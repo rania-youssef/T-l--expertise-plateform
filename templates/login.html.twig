@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+div .button{
+margin-left:750px;
+margin-top:-38px;
+}
+div .button1{
+margin-left:900px;
+margin-top:33px;
+}
+div .bande{
+margin-top:-30px;
+background-color:#F2F3F4;
+padding-top:15px;
+width:100%;
+padding-bottom:15px;
+}
+div .welcome{
+margin-top:-50px;
+width:500px;
+height:250px;
+margin-left:20px;
+}
+h1{
+text-align:center;
+margin-bottom:25px;
+}
+}
+
+
+
+</style>
+<div class="bande">
+<div class="button1"/>
+<a href="/register" class="btn btn-primary" id="logup"> S'inscrire</a>
+</div>
+</div>
+<div>
+<table>
+<tr><td>
+<img src="https://image.freepik.com/photos-gratuite/docteur-presentant-quelque-chose-fond-blanc-isole_1368-5834.jpg " width="500px" hight="500"/>
+</td><td>
+<div class="welcome">
+<h1> Se Connecter</h1>
+  
+
+
+   <form action="{{ path('login') }}" method="post" >
+    <div class="class="form-group">
+        <label for="_username">Username:</label>
+        <input type="text" class="form-control" placeholder="Enter username" id="username" name="_username" value="{{ last_username }}" />
+       </div>
+     <div class="class="form-group">
+       <label for="_password">Password:</label>
+        <input type="password" id="password" class="form-control" name="_password" />
+        </div><br>
+        <button type="submit" class="btn btn-primary mb-2">login</button>
+        
+    </form>
+</div>
+</td></tr></table>
+
+{% endblock %}
+
+
+
+
+
+

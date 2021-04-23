@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<h1> Mes commentaires</h1>
+{{ form_start(form) }}
+<div class="form-row align-items-end" >
+<div class="col">
+ {{ form_row(form.nom) }}
+</div>
+ <div class="col">
+ <div class="form-group">
+ <button type="submit" class="btn btn-success">Rechercher</button>
+ </div>
+</div>
+</div>
+{{ form_end(form)}}
+{% if commentaire %}
+ <table class="table table-striped">
+ <thead>
+ <tr>
+ <th>sujet</th>
+ <th>Contenue </th>
+ <th> Date </th>
+ </tr>
+ </thead>
+ <tbody>
+ {% for commentaire in commentaire %}
+ <tr>
+ <td>{{commentaire.sujet}}</td>
+ <td>{{commentaire.contenue}}</td>
+ <td>{{commentaire.date|date("F jS \\a\\t g:ia")}}</td>
+ {% if is_granted('ROLE_ADMIN') %}
+ <td> <a href="{{path("deleteCommentaire",{"id":id})}}"class="btn btn-danger">Supprimer</a>  
+{% endif %}
+ </tr>
+ {% endfor %}
+ </tbody>
+ </table>
+ {% else %}
+ Pas des comentaires
+ {% endif %}
+ {% if is_granted('ROLE_GENERALISTE') %}
+
+<a href="{{path('showdemande',{'id':id})}}"class="btn btn-success">Retour</a><td>
+{% endif %}
+{% if is_granted('ROLE_ADMIN') %}
+<a href="{{path("newcommentaireA",{"id":id})}}"class="btn btn-success">Ajouter un commentaire</a><br><br>
+<a href="{{path('accueil')}}" class="btn btn-success">Retour</a><td>
+{% endif %}
+{% if is_granted('ROLE_SPECIALISTE') %}
+ <td><a href="{{ path('showdemandeS',{"id":id}) }}"class="btn btn-success">Retour</a><td>
+{% endif %}
+{% endblock %}

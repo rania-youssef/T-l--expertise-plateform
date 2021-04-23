@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1> Demande </h1><br>
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<p> Envoyer depuis : {{ demande.date|date("F jS \\a\\t g:ia") }}</p><br>
+<table class="table table-striped">
+<tbody>
+<tr>
+<td>
+{% if commentaire!=null %}
+<td rowspan="4">
+<table class=table table-striped" width="150px">
+ <thead><tr>
+ <th> Sujet {{commentaire.sujet}}:</th></tr>
+<tbody>
+<tr>
+<td>
+<h5>
+{{commentaire.contenue}}</h5>
+<br></br>
+<p>{{ commentaire.date|date("F jS \\a\\t g:ia") }}
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+{%endif %}
+Initiale Patient :{{ demande.initialePatient }}</td> <td rowspan="4"><br> <br>
+{% if is_granted('ROLE_GENERALISTE') %}
+<a href="/generaliste/new/examen/{{demande.id}}" class="btn btn-success">Ajouter Examen Clinique</a><br><br>
+<a href="#" class="btn btn-dark">Ajouter Examen ATCD</a><br><br>
+<a href="#" class="btn btn-dark">Ajouter Examen Biologique</a><br><br>
+<a href="#" class="btn btn-dark">Ajouter Examen Radiologique</a></td></tr>
+{% endif %}
+<tr><td> Age :{{ demande.age }}</td></tr>
+<tr><td>Explicatif de la demande  :{{ demande.explicatif }}</td></tr>
+<tr><td>Niveau d'urgence : {{demande.niveauUrganece }}</tr></td>
+{% if is_granted('ROLE_GENERALISTE') %}
+<tr><td><a href="/generaliste/edit/demande/{{demande.id}}"class="btn btn-primary">Modifier</a> </td>
+{% endif %}<td>
+<a href="/" class="btn btn-dark">Retour</a></td></tr>
+</body>
+</table>
+{% endblock %}

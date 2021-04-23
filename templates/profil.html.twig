@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2> Mon profil </h2><br>
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<table class="table table-striped">
+<tbody>
+<tr>       
+<td>
+<img src="{{ asset('/uploads/' ~ generaliste.photo) }}" alt="Image" width="200" height="200">
+</td><td>
+<h2>Dr. {{ generaliste.Nom}} {{ generaliste.prenom }}</h2></td></tr>
+<tr><td>
+<p>Nombre d'années d'experiences: {{ generaliste.nbExperience}} </p></td></tr>
+<tr><td>
+<p> Email: {{ generaliste.email }}</p></td></tr>
+<tr><td>
+<p>Téléphone :{{ generaliste.telephone }}</p></td></tr>
+<tr><td>
+<p> Adresse : {{generaliste.adresse }}</p></td></tr>
+<tr> <td>
+<h3> Dossier Medecin</h3></td></tr>
+{% if generaliste.dossier %}
+
+<tr> {% for dossier in generaliste.dossier%}
+<td> <img src="{{ asset('/uploads/' ~ dossier) }}" alt="Image" width="200" height="200"></td>
+{% endfor %}</tr>
+{% endif %}
+
+<tr><td>
+<p><a href="{{path('editprofil',{"id":generaliste.id})}}" class="btn btn-success"> Modifier </a></p></td></tr>
+<tr><td>
+<p><a href="{{path('deleteprofil',{"id":generaliste.id})}}" class="btn btn-danger">Supprimer </a></p></td></tr>
+
+</table>
+{% endblock %}

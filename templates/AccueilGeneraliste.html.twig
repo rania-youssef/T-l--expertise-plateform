@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<a href="{{ path('profil') }}" class="btn float-right">Mon profil</a><td><br><br> 
+<a href="{{path('logout')}}" class="btn float-right">deconnexion</a><td><br><br>
+ {% if generaliste.etat=="En attente d'acceptation"%}
+<h2> en attente d'acceptation par l'administrateur</h2>
+{%endif %}
+
+{%if generaliste.etat=="Accepté" %}
+<h1>welcome generaliste</h1>
+<a href="{{path('newdemande') }} "class="btn btn-success">Nouvelle demande </a><td>
+<a href="{{path('demandeRefus') }} "class="btn btn-success">Demandes refusées </a><td>
+<a href="{{path('listdemande') }} "class="btn btn-success">Consulter mes demandes </a><td>
+
+ <table class="table table-striped">
+ <thead>
+ <tr>
+ <th>Urgence </th>
+   <th>24H </th>
+   <th>72H </th>
+   <th> 7j</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td> Nombre des demandes restantes </td>
+ <td>{{urgenceA}}</td>
+ <td>{{urgenceB}}</td>
+ <td>{{urgenceC}}</td>
+ </tr>
+ </tbody>
+ </table>
+ {%endif%}
+ {% endblock %}

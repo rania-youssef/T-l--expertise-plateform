@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<h1> Nouvelles demandes</h1>
+{% if demande %}
+ <table class="table table-striped">
+ <thead>
+ <tr>
+ <th>Initiale patient</th>
+ <th>Etat de la demande </th>
+ <th>Niveau d'urgence </th>
+ <th> Date </th>
+ </tr>
+ </thead>
+ <tbody>
+ {% for demande in demande %}
+ <tr>
+
+ <td>{{demande.initialePatient}}</td>
+ <td>{{demande.etat}}</td>
+ <td>{{demande.niveauUrganece}}</td>
+ <td>{{ demande.date|date("F jS \\a\\t g:ia") }}
+ <td><a href="{{path('showdemandeA',{'id':demande.id})}}" class="btn btn-success">Afficher</a><td>
+ </tr>
+ {% endfor %}
+ </tbody>
+ </table>
+ {% else %}
+ Pas des nouvelles demandes
+ {% endif %}
+{% endblock %}

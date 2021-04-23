@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1>welcome Admin</h1>
+<a href="{{path("logout")}}" class="btn float-right">deconnexion</a><td><br>
+<a href="{{path("listdemandeA")}}" class="btn btn-success">Consulter les demandes en attentes </a>
+<a href="{{path("listtraiteA")}}" class="btn btn-success">Consulter les demandes attribuées </a><td><br><br>
+<a href="{{path("specialisteNonAccpt")}}" class="btn btn-success">Demandes spécialistes </a><td> <br><br>
+<a href="{{path("specialisteAccpt")}} "class="btn btn-success">Liste des spécialistes acceptés</a><td> <br><br>
+<a href="{{path("generalisteNonAccpt")}}" class="btn btn-success">Demandes généralistes </a><td> <br><br>
+<a href="{{path("generalisteAccpt")}} "class="btn btn-success">Liste des généralistes acceptés</a><td> <br><br>
+ <table class="table table-striped">
+ <thead>
+ <tr>
+ <th>Urgence </th>
+   <th>24H </th>
+   <th>72H </th>
+   <th> 7j</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td> Nombre des demandes restantes </td>
+ <td>{{urgenceAa}}</td>
+ <td>{{urgenceBb}}</td>
+ <td>{{urgenceCc}}</td>
+ </tr>
+ </tbody>
+ </table>
+ {% endblock %}

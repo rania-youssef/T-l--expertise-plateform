@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h2> Mon profil </h2><br>
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<table class="table table-striped">
+<tbody>
+<tr>       
+<td>
+<img src="{{ asset('/uploads/' ~ specialiste.photo) }}" alt="Image" width="200" height="200">
+</td></tr>
+<tr>
+<td>
+<h5>Dr. {{ specialiste.Nom}} {{ specialiste.prenom }}</h5></td></tr>
+<tr>
+<td>
+<h3> Specialiste en : {{specialiste.specialite}} </h3></td></tr>
+<tr>
+<td>
+<p> Nombres d'années d'experiences: {{specialiste.nbanneExperience}}  ans</p></td></tr>
+<tr><td>
+<p> Expériences : {{specialiste.experiences }}</p></td></tr>
+<tr><td>
+<p> Email: {{specialiste .email }}</p></td></tr>
+<tr><td>
+<p>Téléphone :{{ specialiste.telephone }}</p></td></tr>
+<tr><td>
+<p> Adresse : {{specialiste.adresse }}</p></td></tr>
+<tr><td> <h3> Dossier Medecin </h3>
+{% if specialiste.dossier %}
+<tr> {% for dossier in specialiste.dossier%}
+<td> <img src="{{ asset('/uploads/' ~ dossier) }}" alt="Image" width="200" height="200"></td></tr>
+{% endfor %}
+{% endif %}
+{% if is_granted('ROLE_SPECIALISTE') %}
+<tr><td>
+<p><a href="{{path('editspecialiste',{"id":specialiste.id})}}" class="btn btn-success"> Modifier </a></p></td></tr>
+{% endif %}
+<tr><td>
+<p><a href="{{path('deleteprofil',{"id":specialiste.id})}}" class="btn btn-danger"> Supprimer </a></p></td></tr>
+<tr><td>
+<p><a href="{{path('specialisteAccpt')}}" class="btn btn-primary"> Retour </a></p></td></tr>
+</table>
+
+{% endblock %}

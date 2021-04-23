@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<h1> Réponses</h1>
+{% if reponses %}
+<table class="table table-striped">
+<tbody> 
+
+
+ <tr><th> Réponse </th>
+ <th> Envoyer Par 
+ <th> Date </th> 
+ {% for reponse in reponses %}
+<tr><td>{{reponse.reponse}}</td>
+<td> Dr. {{reponse.EnovoyerPar.prenom}} {{reponse.EnovoyerPar.nom}}</td>
+ <td>{{reponse.date|date("F jS \\a\\t g:ia") }}</td> </tr>
+
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+Pas des réponses
+{% endif %}
+{% if is_granted('ROLE_GENERALISTE') %}
+<a href="{{ path('showdemande',{"id":id}) }}"class="btn btn-success">Retour</a>
+{%endif%}
+{% if is_granted('ROLE_ADMIN') %}
+<a href="{{ path('showdemandeA',{"id":id})}}
+{%endif%}
+{% endblock %}

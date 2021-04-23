@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1> Demande  </h1><br>
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+
+<p>	Evoyer depuis :
+{{ demande.date|date("F jS \\a\\t g:ia") }}</p><br>
+{% for   specialiste in demande.SpecialisteAtt %}
+<h5>Attribuée a Dr. {{specialiste.nom}} {{specialiste.prenom}}</h5>
+{% endfor %}
+<table class="table table-striped">
+<tbody>
+<th colspan="6"> 
+<tr>
+<td>
+<p>Initiale Patient :{{ demande.initialePatient }}</p>
+<td rowspan="5">
+<a href="{{path("showExamenCliniqueA",{"id":demande.id})}}" class="btn btn-success">Examen Clinique</a><br><br>
+<a href="{{path('showExamenBioA',{'id':demande.id})}}" class="btn btn-success">Examen Biologique</a><br><br>
+<a href="{{path('showExamenATCDA',{'id':demande.id})}}" class="btn btn-success">Examen ATCD</a><br><br>
+<a href="{{path('showExamenRadioA',{'id':demande.id})}}" class="btn btn-success"> Examen Radiologique</a><br><br>
+
+
+</td></tr>
+{% if demande.etat=="En Attente d'acceptation" %}
+<a href="{{path("AccepterDemande",{"id":demande.id})}}"class="btn btn-success">Accepter la demande</a></td></tr>
+<a href="{{path("RefuserDemande",{"id":demande.id})}}"class="btn btn-danger">Resuser la demande</a></td></tr>
+{%else%}
+<tr><td>
+<p> Age: {{ demande.age }}</p></td></tr>
+<tr><td>
+<p>Explicatif de la demande :{{ demande.explicatif }}</p></td></tr>
+<tr><td>
+<p> Niveau d'urgence : {{demande.niveauUrganece }}</p></td></tr>
+<tr><td>
+<p> Etat: {{ demande.etat}}</p></td></tr><br><tr>
+<td>
+<a href="{{path("listcommentairesA",{"id":demande.id})}}"class="btn btn-success">Afficher les commentaires</a></td></tr>
+<a href="{{path("showreponseDA",{"idD":demande.id})}}"class="btn btn-success">Afficher les commentaires</a></td></tr>
+
+</table></tr>
+<tr><td>
+<a href="{{path("specialisteAttrib",{"id_demande":demande.id})}}"class="btn btn-success">Attribur a un spécialiste</a></td></tr>
+{%endif%}
+<tr><td><a href="/" class="btn btn-primary">Retour</a></td></tr>
+
+</table>
+{% endblock %}

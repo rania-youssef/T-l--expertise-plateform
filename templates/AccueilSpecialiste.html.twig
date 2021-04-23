@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% if specialiste.etat=="En attente d'acceptation"%}
+<a href="{{ path('profilS') }}" class="btn float-right">Mon profil</a><td><br><br> 
+<a href="{{ path('logout') }}" class="btn float-right">Deconnexion</a><td><br><br> 
+<h2> En attente d'cceptation par l'administrateur </h2>
+{%endif %}
+{%if specialiste.etat=="Accepté" %}
+<h1>welcome Specialiste</h1>
+<a href="{{ path('profilS') }}" class="btn float-right">Mon profil</a><td><br><br> 
+<a href="{{ path('logout') }}" class="btn float-right">Deconnexion</a><td><br><br> 
+<a href="{{ path('listdemandeS') }}" class="btn btn-success">Consulter les nouvelles demandes </a>
+<a href="# "class="btn btn-success">Consulter les demandes cloturées </a><td><br><br>
+<a href="# "class="btn btn-success">Consulter les réponses des demandes des renseignements</a><td> <br><br>
+<table class="table table-striped">
+ <thead>
+ <tr>
+ <th>Urgence </th>
+   <th>24H </th>
+   <th>72H </th>
+   <th> 7j</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr>
+ <td> Nombre des demandes restantes </td>
+ <td>{{urgenceAaa}}</td>
+ <td>{{urgenceBbb}}</td>
+ <td>{{urgenceCcc}}</td>
+ </tr>
+ </tbody>
+ </table>
+{% endif %}
+{% if specialiste.etat=="Réfusé" %}
+<a href="{{ path('profilS') }}" class="btn float-right">Mon profil</a><td><br><br> 
+<a href="{{ path('logout') }}" class="btn float-right">Deconnexion</a><td><br><br> 
+<h2> Votre demande a été réfusé par la </h2>
+{% endif%}
+{% endblock %}

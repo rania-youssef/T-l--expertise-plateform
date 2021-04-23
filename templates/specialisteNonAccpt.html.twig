@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<h1>Liste des specialistes </h1>
+{{ form_start(form) }}
+<div class="form-row align-items-end" >
+<div class="col">
+ {{ form_row(form.nom) }}
+</div>
+ <div class="col">
+ <div class="form-group">
+ <button type="submit" class="btn btn-success">Rechercher</button>
+ </div>
+</div>
+</div>
+{{ form_end(form)}}
+{% if specialiste %}
+ <table class="table table-striped">
+ <thead>
+ <tr>
+ <th> Nom et Prenom </th>
+ <th> Spécialité</th>
+ <th></th>
+
+ </tr>
+ </thead>
+ <tbody>
+ {% for specialiste in specialiste %}
+ <tr>
+ <td>{{specialiste.nom}} {{specialiste.prenom}}</td>
+<td>{{specialiste.specialite}}</td>
+<td>
+<p><a href="{{path("showprofil",{"id":specialiste.id})}}"> Afficher profil </a></p></td>
+<td>
+<p><a href="{{path('AccepterSpecialiste',{"id":specialiste.id})}}" class="btn btn-success"> Accepter</a></p></td>
+<td>
+<p><a href="{{path('RefuserSpecialiste',{"id":specialiste.id})}}" class="btn btn-danger"> Réfuser </a></p></td></tr>
+{%endfor%}
+{%else %}
+<h2>Pas des demandes des spécialistes</h2>
+{%endif%}
+<tr><td><p><a href="{{path('accueil')}}" class="btn btn-primary"> Retour </a></p></td></tr>
+{% endblock %}

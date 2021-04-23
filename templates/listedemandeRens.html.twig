@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1> Demande des renseignments </h1><br>
+<a href="{{path("logout")}}" class="btn float-right">deconnexion</a><td>
+{% if demandeRens %}
+{% set num=1 %}
+<table class="table table-striped">
+<tbody>
+<tr>
+<th>
+Ayant trait
+</th>
+<th>
+Message
+</th>
+<th>
+Besoins
+</th>
+<th>
+Date
+</th>
+<th>
+</th>
+</tr>
+{% for demRens in demandeRens %}
+<tr>
+<td>
+{% for trait in demRens.trais %}
+ - {{trait}} <br>
+ {%endfor %}
+</td>
+<td>
+{{demRens.Message}}
+</td>
+<td>
+{% for besoin in demRens.Besoins %}
+- {{besoin}}<br>
+{% endfor%}
+</td>
+<td>
+{{ demRens.date|date("F jS \\a\\t g:ia") }}</p>
+</td>
+{% if is_granted('ROLE_SPECIALISTE') %}
+<td>
+<a href="{{path('showdemandeRens',{'id':demRens.id})}}"class="btn btn-success">Afficher</a></td>
+{%endif %}
+{% if is_granted('ROLE_GENERALISTE') %}
+<td>
+<a href="{{path('showdemandeRensG',{'id':demRens.id})}}"class="btn btn-success">Afficher</a></td>
+{%endif%}
+{%endfor%}
+</tbody>
+</table>
+{%else%} 
+Pas des demandes
+{%endif %}
+{% if is_granted('ROLE_SPECIALISTE') %}
+<tr><td>
+<a href="{{path("demanderenseignements",{"id":id})}}"class="btn btn-primary">Ajouter une demande</a></td></tr>
+{%endif%}
+{% endblock %}

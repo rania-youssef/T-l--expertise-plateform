@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<h1>Liste des specialistes </h1>
+{{ form_start(form) }}
+<div class="form-row align-items-end" >
+<div class="col">
+ {{ form_row(form.nom) }}
+</div>
+ <div class="col">
+ <div class="form-group">
+ <button type="submit" class="btn btn-success">Rechercher</button>
+ </div>
+</div>
+</div>
+{{ form_end(form)}}
+{% if spec %}
+ <table class="table table-striped">
+ <thead>
+ <tr>
+ <th> Nom et Prenom </th>
+ <th> Spécialité</th>
+ <th>Email</th>
+ <th></th>
+
+ </tr>
+ </thead>
+ <tbody>
+ {% for specialiste in spec %}
+ <tr>
+ <td>{{specialiste.nom}} {{specialiste.prenom}}</td>
+<td>{{specialiste.specialite}}</td>
+ <td>{{specialiste.email}}</td>
+ {% set nexxiste= false %}
+ {% if specialiste.demandeAtt is empty %}
+<td><a href="{{path("attribuerS",{"id_demande":id_demande,"id_specialiste":specialiste.id})}}"class="btn btn-success">Attribuer</a></td>
+{% else %}
+{% for dem in specialiste.demandeAtt  %}
+{% if dem.id==id_demande %}
+  <td><a href="#" class="btn float-right">Attribuée</a><td><br><br> 
+  {% set nexxiste= true %}
+  {%endif%}
+{% endfor %}
+{% if nexxiste==false %}
+<td><a href="{{path("attribuerS",{"id_demande":id_demande,"id_specialiste":specialiste.id})}}"class="btn btn-success">Attribuer</a></td>
+ {% endif %}
+ {%endif %}
+ {% endfor%}
+ </tbody>
+ </table>
+ {% else %}
+ Pas des specialistes inscrits
+ {% endif %}
+ <a href="{{path("specialisteAttrib",{"id_demande":id_demande})}}" class="btn btn-primary">Retour</a></td></tr>
+{% endblock %}

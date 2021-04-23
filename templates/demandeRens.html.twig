@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2> Demander des renseignements </h2>
+{{ form_start(form) }}
+Les renseignements consignés concernant le particulier identifiable et ayant :
+{{form_row(form.trais)}}
+{{ form_widget(form) }}
+ {{ form_end(form) }}
+{% endblock %}

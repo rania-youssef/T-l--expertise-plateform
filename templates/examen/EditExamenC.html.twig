@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier examen{% endblock %}
+{% block body %}
+    <h3>Modifier examen</h3>
+    <a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+ {% if app.request.attributes.get('_route') == 'editexamenC' %}
+        <h2>Images</h2>
+        {% for image in examen.images %}
+            <div>
+                <img src="{{ asset('/uploads/' ~ image.nomImage) }}" alt="Image" width="150">
+                <a href="{{ path('deleteimage', {id: image.id}) }} " class="btn btn-danger" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/images.js') }}"></script>
+{% endblock %}

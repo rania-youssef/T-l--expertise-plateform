@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<a href="/logout" class="btn float-right">deconnexion</a><td><br>
+
+<p>	Evoyer depuis :
+{{ demande.date|date("F jS \\a\\t g:ia") }}</p><br>
+<table class="table table-striped">
+<tbody>
+<tr><td>
+<tr>
+<td>
+<p>Initiale Patient :{{ demande.initialePatient }}</p></td>
+
+<tr><td>
+<p>Explicatif de la demande :{{ demande.explicatif }}</p></td></tr>
+<tr><td>
+<p> Niveau d'urgence : {{demande.niveauUrganece }}</p></td></tr>
+<tr><td>
+<p> Etat: {{ demande.etat}}</p></td></tr>
+{% if demande.etat=="Refusé"%}
+<tr><td>
+<a href="{{path("listcommentaires",{"id":demande.id})}}"class="btn btn-success">Afficher les commentaires</a></td></tr>
+
+<tr><td>
+<a href="{{path('editdemande',{'id':demande.id})}}"class="btn btn-primary">Modifier</a></td><tr><td>
+<a href="{{path('deletedemande',{'id':demande.id})}}" data-confirm="Etes-vous certain de vouloir supprimer?" class="btn btn-danger">Supprimer</a></td></tr>
+<tr> <td rowspan="5">
+<a href="{{path("newExamenClinique",{"id":demande.id})}}" class="btn btn-success">Examen Clinique</a><br><br>
+<a href="{{path('newExamenBio',{'id':demande.id})}}" class="btn btn-success">Examen Biologique</a><br><br>
+<a href="{{path('newExamenATCD',{'id':demande.id})}}" class="btn btn-success">Examen ATCD</a><br><br>
+<a href="{{path('newExamenRadio',{'id':demande.id})}}" class="btn btn-success"> Examen Radiologique</a><br><br>
+
+</td></tr>
+{% else %}
+
+<tr><td>
+<a href="{{path('editdemande',{'id':demande.id})}}"class="btn btn-primary">Modifier</a></td><tr>
+<a href="{{path('deletedemande',{'id':demande.id})}}" data-confirm="Etes-vous certain de vouloir supprimer?" class="btn btn-danger">Supprimer</a></td></tr>
+
+<tr><td>
+<a href="{{path("listcommentaires",{"id":demande.id})}}"class="btn btn-success">Afficher les commentaires</a></td></tr>
+<tr><td>
+<a href="{{path("listedemandeRensG",{"id":demande.id})}}"class="btn btn-success">Afficher les demandes des renseignements</a></td></tr>
+<tr><td>
+<tr><td><a href="{{path("showreponseD",{"idD":demande.id})}}"class="btn btn-success">Afficher les réponses</a></td></tr>
+<td rowspan="5">
+<a href="{{path("newExamenClinique",{"id":demande.id})}}" class="btn btn-success">Examen Clinique</a><br><br>
+<a href="{{path('newExamenBio',{'id':demande.id})}}" class="btn btn-success">Examen Biologique</a><br><br>
+<a href="{{path('newExamenATCD',{'id':demande.id})}}" class="btn btn-success">Examen ATCD</a><br><br>
+<a href="{{path('newExamenRadio',{'id':demande.id})}}" class="btn btn-success"> Examen Radiologique</a><br><br>
+
+</td></tr>
+{%endif%}
+</body>
+</table>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<h1>Liste des specialistes </h1>
+{{ form_start(form) }}
+<div class="form-row align-items-end" >
+<div class="col">
+ {{ form_row(form.nom) }}
+</div>
+ <div class="col">
+ <div class="form-group">
+ <button type="submit" class="btn btn-success">Rechercher</button>
+ </div>
+</div>
+</div>
+{{ form_end(form)}}
+{% if spec %}
+ <table class="table table-striped">
+ <thead>
+ <tr>
+ <th> Nom et Prenom </th>
+ <th> Spécialité</th>
+ <th>Email</th>
+ <th></th>
+
+ </tr>
+ </thead>
+ <tbody>
+ {% for specialiste in spec %}
+ <tr>
+ <td>{{specialiste.nom}} {{specialiste.prenom}}</td>
+<td>{{specialiste.specialite}}</td>
+<td>
+<p><a href="{{path("showprofil",{"id":specialiste.id})}}" > Afficher profil </a></p></td>
+<td>
+<p><a href="{{path('deleteprofil',{"id":specialiste.id})}} class="btn btn-danger"> Supprimer</a></p></td>
+{%endfor%}
+{%else %}
+<h2>Pas des spécialistes acceptés</h2>
+{% endif %}
+<tr><td>
+<p><a href="{{path('specialisteAccpt')}}" class="btn btn-primary"> Retour </a></p></td></tr>
+{% endblock %}

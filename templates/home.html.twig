@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% if is_granted('ROLE_GENERALISTE') %}
+{% include 'AccueilGeneraliste.html.twig' %}
+{% endif %}
+{% if is_granted('ROLE_ADMIN') %}
+{% include 'AccueilAdmin.html.twig' %}
+{% endif %}
+{% if is_granted('ROLE_SPECIALISTE') %}
+{% include 'AccueilSpecialiste.html.twig' %}
+{% endif %}
+{% endblock %}

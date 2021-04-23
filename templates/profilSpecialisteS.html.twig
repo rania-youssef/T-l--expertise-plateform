@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2> Mon profil </h2><br>
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<table class="table table-striped">
+<tbody>
+<tr>       
+<td>
+<img src="{{ asset('/uploads/' ~ specialiste.photo) }}" alt="Image" width="200" height="200">
+</td>
+<td align="left">
+<br><br>
+<h1>Dr. {{ specialiste.Nom}} {{ specialiste.prenom }}</h1></td></tr>
+<tr>
+<td>
+<h3> Specialiste en : {{specialiste.specialite}} </h3></td></tr>
+<tr>
+<td>
+<p> Nombre d'années d'experience: {{specialiste.nbanneExperience}}  ans</p></td></tr>
+<tr><td>
+<p> Expériences : {{specialiste.experiences }}</p></td></tr>
+<tr><td>
+<p> Email: {{specialiste .email }}</p></td></tr>
+<tr><td>
+<p>Téléphone :{{ specialiste.telephone }}</p></td></tr>
+<tr><td>
+<p> Adresse : {{specialiste.adresse }}</p></td></tr>
+<tr><td>
+<p> Adresse : {{specialiste.adresse }}</p></td></tr>
+<tr><td> <h3> Dossier Medecin </h3>
+{% if specialiste.dossier %}
+<tr> {% for dossier in specialiste.dossier%}
+<td> <img src="{{ asset('/uploads/' ~ dossier) }}" alt="Image" width="200" height="200"></td></tr>
+{% endfor %}
+{% endif %}
+<tr><td>
+<p><a href="{{path('deleteprofilS',{"id":specialiste.id})}}" class="btn btn-danger"> Supprimer </a></p></td></tr>
+<tr><td>
+<p><a href="{{path('accueil')}}" class="btn btn-primary"> Retour </a></p></td></tr>
+</table>
+
+{% endblock %}

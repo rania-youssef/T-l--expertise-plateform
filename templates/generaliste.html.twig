@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1> Mon profil</h1><br>
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<table class="table table-striped">
+<tbody>
+<tr>
+<td>
+<p> Nom et Prenom :{{ generaliste.nom }} {{ generaliste.prenom }}</p></td>
+
+</td></tr>
+<tr><td>
+<p> Email: {{ generaliste.email }}</p></td></tr>
+<tr><td>
+<p>Adresse :{{ generaliste.adresse }}</p></td></tr>
+
+<tr><td>
+<p> Nombre d'années d'expérience: {{ generaliste.nbanneExperience}}</p></td></tr>
+
+<tr><td>
+<a href="#"class="btn btn-primary">Modifier</a></td></tr>
+<tr><td>
+<a href="/" class="btn btn-primary">Retour</a></td></tr>
+</body>
+</table>
+{% endblock %}

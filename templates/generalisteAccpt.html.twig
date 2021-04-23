@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<h1>Liste des généralistes </h1>
+{% if generaliste %}
+ <table class="table table-striped">
+ <thead>
+ <tr>
+ <th> Nom et Prenom </th>
+ <th></th>
+
+ </tr>
+ </thead>
+ <tbody>
+ {% for generaliste in generaliste%}
+ <tr>
+ <td>{{generaliste.nom}} {{generaliste.prenom}}</td>
+<td>
+<p><a href="{{path("showprofilgeneraliste",{"id":generaliste.id})}}"> Afficher profil </a></p></td>
+<td>
+<p><a href="{{path('deleteprofilGeneraliste',{"id":generaliste.id})}}" class="btn btn-success"> Supprimer</a></p></td>
+
+{%endfor%}
+{%else %}
+<h2>Pas des demandes des généralistes</h2>
+{%endif%}
+<tr><td><p><a href="{{path('accueil')}}" class="btn btn-primary"> Retour </a></p></td></tr>
+{% endblock %}

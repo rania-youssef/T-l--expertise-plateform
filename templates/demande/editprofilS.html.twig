@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2> Modifier votre profil </h2>
+{{ form_start(form) }}
+ {% if app.request.attributes.get('_route') == 'editprofilS' %}
+            <div>
+                <img src="{{ asset('/uploads/' ~ specialiste.photo) }}" alt="Image" width="200" height="200"><br>
+                <a href="{{ path('deletephotoS', {id:specialiste.id}) }} ">Supprimer</a><br><br>
+            </div>
+      
+    {% endif %}
+
+{{ form_widget(form) }}
+ {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1> Demande des renseignments </h1><br>
+<a href="{{path("logout")}}" class="btn float-right">deconnexion</a><td>
+<p>	Evoyer depuis :
+{{ demandeRens.date|date("F jS \\a\\t g:ia") }}</p><br>
+<table class="table table-striped">
+<tbody>
+<tr> 
+<td><strong>
+Les renseignements consignés concernant le particulier
+identifiable et ayant trait :</strong> <br>
+{% for trait in demandeRens.trais%}
+ - {{trait}}<br>
+ {%endfor %}
+</td>
+</tr>
+<tr><th>
+Message :<br></th></tr>
+<tr><td>
+{{demandeRens.Message}}
+</td></tr>
+<tr><th>Besoins :<br></th></tr>
+{% for besoin in demandeRens.Besoins %}
+<tr><td>- {{besoin}}<br></td></tr>
+{% endfor%}
+{% if reponses %}
+<tr><td><h3> Reponses </h3></td></tr>
+
+{%for reponse in reponses %}
+<tr><td> {{reponse.Reponse}} </td></tr>
+<tr><td>
+{%for fichiers in reponse.fichiers%}   
+<tr><td>
+<img src="{{ asset('/uploads/' ~ fichiers) }}" alt="Image" width="500" height="600"></td></tr>
+{%endfor%}
+<td></tr>
+{%endfor%}
+{% endif%}
+{% if is_granted('ROLE_SPECIALISTE') %}
+<tr><td>
+<a href="{{path('editdemandeRens',{'id':demandeRens.id})}}"class="btn btn-primary">Modifier</a></td><tr>
+<tr><td>
+<a href="{{path('deletedemandeRens',{'id':demandeRens.id})}}"class="btn btn-danger">Supprimer</a></td></tr>
+</td></tr>
+{%endif%}
+{% if  is_granted('ROLE_GENERALISTE')%}
+<tr><td>
+<br><br>
+<h4>Ajouter une réponse</h4><br>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+ {{ form_end(form) }}
+ </td></tr>
+{%endif%}
+</tbody>
+</table>
+{% endblock %}
+
+
+
+

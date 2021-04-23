@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h1> Ajouter un commentaire </h1><br>
+<a href="/logout" class="btn float-right">deconnexion</a><td><br><br> 
+<p>	Evoyer depuis :
+{{ demande.date|date("F jS \\a\\t g:ia") }}</p><br>
+<table class="table table-striped">
+<tbody>
+<tr>
+<td>
+<p>Initiale Patient :{{ demande.initialePatient }}</p>
+<td rowspan="5">
+
+<h3> New commentaire</h3><br><sbr>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+ {{ form_end(form) }}
+
+</td></tr>
+<tr><td>
+<p> Age: {{ demande.age }}</p></td></tr>
+<tr><td>
+<p>Explicatif de la demande :{{ demande.explicatif }}</p></td></tr>
+<tr><td>
+<p> Niveau d'urgence : {{demande.niveauUrganece }}</p></td></tr>
+<tr><td>
+<p> Etat: {{ demande.etat}}</p></td></tr>
+<tr><td><br>
+<a href="{{path("showdemandeA",{"id":demande.id})}}" class="btn btn-primary">Retour</a></td></tr>
+</body>
+</table>
+{% endblock %}

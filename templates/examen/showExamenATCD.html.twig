@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{% if is_granted('ROLE_GENERALISTE') %}
+{% include "nevbarre.html.twig"%}
+{%endif%}
+{%if examen%}
+<h1> Examen ATCD </h1>
+
+<a href="{{path('logout')}}" class="btn float-right">deconnexion</a><td><br><br> 
+<table class="table table-striped">
+<tbody>
+<tr><td>
+<p>Pathologie :{{ examen.Pathologie}}</p></td></tr>
+<tr><td>
+<p> Habitude :{{ examen.Habitude}}</p></td></tr>
+<tr><td>
+<p> Profession: {{examen.Profession }}</p></td></tr>
+
+<tr><td> <h4> Fichiers importées </h4> 
+<table class="table table-striped">
+<tbody>
+{% for image in examen.images %}
+       
+<td>
+<img src="{{ asset('/uploads/' ~ image) }}" alt="Image" width="200" height="200">
+</td>
+{% endfor %} 
+</tbody>        
+</table> 
+</td></tr>
+<tr><td>
+<tr><td>
+{% if is_granted('ROLE_GENERALISTE') %}
+<a href="{{path('deletexamenATCD',{'id':examen.id})}}" class="btn btn-primary">Supprimer</a></td></tr>
+{% endif %}
+{% if is_granted('ROLE_GENERALISTE') %}
+<tr> <td>
+<a href="{{path('showdemande',{'id':id})}}" class="btn btn-primary">Retour</a>
+{% endif %}
+{% if is_granted('ROLE_ADMIN') %}
+<a href="{{path('showdemandeA',{'id':id})}}" class="btn btn-primary">Retour</a>
+{% endif %}
+{% if is_granted('ROLE_SPECIALISTE') %}
+<a href="{{path('showdemandeS',{'id':id})}}" class="btn btn-primary">Retour</a>
+{% endif %}</td>
+</tr>
+</tbody>
+</table>
+{% else %}
+<h3> Pas d'examen ATCD </h3>
+{%endif%}
+{% endblock %}

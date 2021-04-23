@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+{% if is_granted('ROLE_GENERALISTE') %}
+{% include "nevbarre.html.twig"%}
+{%endif%}
+<h2> {{Message}} </h2>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+ {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,37 @@
+
+<div class="topnav">
+  
+  <a href="{{path('newExamenClinique',{'id':id})}}">Examen Clinique</a>
+  <a href="{{path('newExamenATCD',{'id':id})}}">Examen ATCD</a>
+  <a href="{{path('newExamenBio',{'id':id})}}">Examen Biologique</a>
+  <a href="{{path('newExamenRadio',{'id':id})}}">Examen Radiologique</a>
+   <a href="{{path('showdemande',{'id':id})}}"  class="btn float-right">Demande</a>
+</div>
+<style>
+.topnav {
+  background-color: #33CFFF;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #33FFFA;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #33D2FF ;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #336DFF;
+  color: white;
+}
+</style>

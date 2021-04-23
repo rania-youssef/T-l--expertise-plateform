@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<style>
+
+
+div .button{
+margin-left:750px;
+margin-top:-38px;
+}
+div .button1{
+margin-left:900px;
+margin-top:33px;
+}
+div .bande{
+margin-top:-30px;
+background-color:#F2F3F4;
+padding-top:15px;
+width:100%;
+padding-bottom:15px;
+}
+div .welcome{
+margin-top:20px;
+width:500px;
+height:250px;
+margin-left:20px;
+}
+h2{
+text-align:center;
+margin-bottom:25px;
+}
+}
+
+
+
+</style>
+<div class="bande">
+<div class="button1"/>
+<a href="/login" class="btn btn-primary" id="login"> Se connecter </a>
+</div>
+<div class="button">
+<a href="/register" class="btn btn-primary" id="logup"> S'inscrire</a>
+</div>
+</div>
+<div>
+<table>
+<tr><td>
+<img src="https://image.freepik.com/photos-gratuite/docteur-presentant-quelque-chose-fond-blanc-isole_1368-5834.jpg " width="500px" hight="500"/>
+</td><td>
+<div class="welcome">
+<h2> Téléexpertise </h2>
+<p>la télé-expertise est la pratique de télé-médecine qui consiste pour un professionnel de santé, à solliciter l'avis d'un ou plusieurs autres professionnels de santé dans le cadre de la prise en charge d'un patient. Cette pratique peut-être utilisée dans le suivi pluri-disciplinaire de patients âgés, atteints d'affections longue durée ou encore dans les déserts médicaux quand certaines spécialités font défaut.</p>
+</div>
+</td></tr></table>
+
+{% endblock %}
